@@ -1,1 +1,1 @@
-docker build -t ssserver:alpine .
+docker build -t shadowsocks:alpine .
