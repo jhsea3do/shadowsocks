@@ -1,1 +1,1 @@
-docker build -t jhsea3do/honey:alpine .
+docker build -t jhsea3do/shadowsocks:honey .
