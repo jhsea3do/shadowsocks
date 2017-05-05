@@ -5,7 +5,7 @@ services:
         domainname: javaws.com
         container_name: ss0
         tty: false
-        image: shadowsocks:alpine
+        image: shadowsocks:busybox
         network_mode: bridge
         ports: 
             - 443
@@ -19,7 +19,7 @@ services:
         domainname: javaws.com
         container_name: ss1
         tty: false
-        image: shadowsocks:alpine
+        image: shadowsocks:busybox
         network_mode: bridge
         ports:
             - 443

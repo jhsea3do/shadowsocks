@@ -1,1 +1,1 @@
-docker build -t shadowsocks:alpine .
+docker build -t jhsea3do/shadowsocks:busybox .

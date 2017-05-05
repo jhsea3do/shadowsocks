@@ -11,10 +11,10 @@ $ sh build.sh
 ```shell
 $ docker run --name sserver -p 10443:443 -dt \
     -v $(pwd)/server.json:/config.json \
-    jhsea3do/shadowsocks:alpine sserver
+    jhsea3do/shadowsocks sserver
 
 $ docker run --rm -it \
-    jhsea3do/shadowsocks:alpine sserver --help
+    jhsea3do/shadowsocks sserver --help
 ```
 
 ## Start Client
@@ -22,10 +22,10 @@ $ docker run --rm -it \
 ```shell
 $ docker run --name sslocal -p 11080:1080 -dt \
     -v $(pwd)/client.json:/config.json \
-    jhsea3do/shadowsocks:alpine sslocal
+    jhsea3do/shadowsocks sslocal
 
 $ docker run --rm -it \
-    jhsea3do/shadowsocks:alpine sslocal --help
+    jhsea3do/shadowsocks sslocal --help
 ```
 
 ## Docker Compose
@@ -35,7 +35,7 @@ version: '2'
 services:
     default:
         tty: false
-        image: shadowsocks:alpine
+        image: shadowsocks
         network_mode: bridge
         ports: 
             - 10443:443
