@@ -9,7 +9,7 @@ $ sh build.sh
 ## Start Server
 
 ```shell
-$ docker run --name sserver -p 10443:443 -dt \
+$ docker run --name ssserver -p 10443:443 -dt \
     -v $(pwd)/server.json:/config.json \
     jhsea3do/shadowsocks ssserver
 
