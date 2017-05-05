@@ -2,8 +2,9 @@
 
 ## Thanks
 
-- https://github.com/mconintet/honey
-- https://github.com/mconintet/clicolor
+- See: https://github.com/jhsea3do/shadowsocks/tree/honey
+- See: https://github.com/mconintet/honey
+- See: https://github.com/mconintet/clicolor
 
 ## Build Image
 
