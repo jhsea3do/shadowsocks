@@ -11,10 +11,10 @@ $ sh build.sh
 ```shell
 $ docker run --name sserver -p 10443:443 -dt \
     -v $(pwd)/server.json:/config.json \
-    jhsea3do/shadowsocks sserver
+    jhsea3do/shadowsocks ssserver
 
 $ docker run --rm -it \
-    jhsea3do/shadowsocks sserver --help
+    jhsea3do/shadowsocks ssserver --help
 ```
 
 ## Start Client
