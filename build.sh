@@ -1,1 +1,1 @@
-docker build -t jhsea3do/shadowsocks:busybox .
+docker build -t jhsea3do/honey:alpine .

@@ -1,23 +1,16 @@
-FROM busybox:latest
+FROM golang:alpine
 
 ADD https://busybox.net/downloads/binaries/ssl_helper-x86_64 /bin/ssl_helper
+RUN chmod +x /bin/ssl_helper
 
-RUN chmod 755 /bin/ssl_helper
+RUN mkdir -p /go/src/github.com/mconintet \
+    && wget -O /tmp/clicolor-master.zip https://github.com/mconintet/clicolor/archive/master.zip \
+    && wget -O /tmp/honey-master.zip https://github.com/mconintet/honey/archive/master.zip \
+    && unzip -d /tmp /tmp/clicolor-master.zip \
+    && unzip -d /tmp /tmp/honey-master.zip \
+    && mv /tmp/clicolor-master /go/src/github.com/mconintet/clicolor \
+    && mv /tmp/honey-master /go/src/github.com/mconintet/honey \
+    && cd /go/src/github.com/mconintet/honey && sh build.sh && mv out/honey /bin/honey \
+    && cd /go && rm -rf /go/src/github.com /tmp/*.zip
 
-ENV SHADOWSOCKS_SERVER_VERSION=1.2.1
-ENV SHADOWSOCKS_CLIENT_VERSION=1.1.5
-
-RUN wget -O /tmp/ss.tar.gz https://github.com/shadowsocks/shadowsocks-go/releases/download/${SHADOWSOCKS_SERVER_VERSION}/shadowsocks-server.tar.gz \
-    && wget -O /tmp/sl.gz https://github.com/shadowsocks/shadowsocks-go/releases/download/${SHADOWSOCKS_CLIENT_VERSION}/shadowsocks-local-linux64-${SHADOWSOCKS_CLIENT_VERSION}.gz \
-    && tar xzvf /tmp/ss.tar.gz -C /tmp && mv /tmp/shadowsocks-server /bin/ssserver \
-    && gunzip -c /tmp/sl.gz > /bin/sslocal \
-    && rm -rf /tmp/*.gz \
-    && chmod +x /bin/ss*
-
-COPY entrypoint.sh .
-
-COPY config.json .
-
-EXPOSE 443
-
-ENTRYPOINT ["sh", "entrypoint.sh"]
+CMD [ '/bin/honey' ]

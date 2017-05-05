@@ -1,46 +1,20 @@
 # README
 
+## Thanks
+
+- https://github.com/mconintet/honey
+- https://github.com/mconintet/clicolor
+
 ## Build Image
 
 ```shell
 $ sh build.sh
 ```
 
-## Start Server
+## Get Binary
 
 ```shell
-$ docker run --name ssserver -p 10443:443 -dt \
-    -v $(pwd)/server.json:/config.json \
-    jhsea3do/shadowsocks ssserver
-
-$ docker run --rm -it \
-    jhsea3do/shadowsocks ssserver --help
-```
-
-## Start Client
-
-```shell
-$ docker run --name sslocal -p 11080:1080 -dt \
-    -v $(pwd)/client.json:/config.json \
-    jhsea3do/shadowsocks sslocal
-
-$ docker run --rm -it \
-    jhsea3do/shadowsocks sslocal --help
-```
-
-## Docker Compose
-
-```yaml
-version: '2'
-services:
-    default:
-        tty: false
-        image: shadowsocks
-        network_mode: bridge
-        ports: 
-            - 10443:443
-        volumes:
-            - ./tmp/config.json:/config.json
-        restart: always
-        command: ssserver
+$ docker run -d --name honey jhsea3do/honey:alpine /bin/honey -la=":8123" -sa="localhost:1080"
+$ docker cp honey:/bin/honey .
+$ docker stop honey && docker rm honey
 ```
